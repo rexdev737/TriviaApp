@@ -43,7 +43,7 @@ const Home = () => {
         </Grid>
         <Grid item marginBottom={10}>
           <Button
-            variant={"outlined"}
+            variant="contained"
             onClick={handleClick}
             endIcon={<PlayArrowIcon />}
           >
