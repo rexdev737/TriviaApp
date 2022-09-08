@@ -1,11 +1,12 @@
 import { Dispatch } from "redux";
 import { QuizState } from '../../types';
 import { addData } from "../actions";
-import { ADD_DATA, SET_RESULT, SET_LOADING } from '../actions/types';
+import { ADD_DATA, SET_RESULT, SET_LOADING, BEGIN_ACTION } from '../actions/types';
 import axios from 'axios';
 import { setLoadingAction } from '../actions/index';
 
 let initialQuiz: QuizState = {
+    isAuthenticated: false,
     loading: false,
     results: [
         {
@@ -22,7 +23,7 @@ const API_URL =
 
 export const fetchQuestions = () => (dispatch: Dispatch<any>) => {
     dispatch(setLoading(false))
-    
+
     axios
         .get(API_URL)
         .then((response) => {
@@ -40,7 +41,6 @@ export const setLoading = (flag: boolean) => (dispatch: Dispatch<any>) => {
 }
 
 const rootReducer = (state: QuizState = initialQuiz, action: any): QuizState => {
-
     switch (action.type) {
         case ADD_DATA:
             return {
@@ -61,6 +61,12 @@ const rootReducer = (state: QuizState = initialQuiz, action: any): QuizState => 
             return {
                 ...state,
                 loading: true
+            }
+
+        case BEGIN_ACTION:
+            return {
+                ...state,
+                isAuthenticated: true,
             }
 
         default:

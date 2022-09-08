@@ -1,5 +1,5 @@
 import { QuizState } from '../../types';
-import { SET_RESULT, ADD_DATA, SET_LOADING } from './types';
+import { SET_RESULT, ADD_DATA, SET_LOADING, BEGIN_ACTION } from './types';
 
 export const setResult = (id: number, answer: string) => ({
     type: SET_RESULT,
@@ -17,4 +17,8 @@ export const addData = (data: QuizState) => ({
 export const setLoadingAction = (loading: boolean) => ({
     type: SET_LOADING,
     payload: loading
+})
+
+export const beginAction = () => ({
+    type: BEGIN_ACTION
 })

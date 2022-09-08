@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Button, Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import { IQuiz, QuizState } from "../../types";
+import LoadingComponent from "../../components/LoadingComponent";
 import StyledComponent from "../../components/StyledComponent";
 
 import { setResult } from "../../redux/actions";
@@ -23,8 +24,6 @@ const Quiz = () => {
   const initialData: IQuiz[] = useSelector((state: QuizState) => state.results);
   const loading: boolean = useSelector((state: QuizState) => state.loading);
 
-  // alert(loading);
-
   const handleClick = useCallback(
     (answer: string) => {
       dispatch(setResult(count, answer));
@@ -39,7 +38,7 @@ const Quiz = () => {
 
   return loading ? (
     <StyledComponent>
-      <h1>Loading</h1>
+      <LoadingComponent />
     </StyledComponent>
   ) : (
     <StyledComponent>
@@ -51,7 +50,7 @@ const Quiz = () => {
         height="100vh"
       >
         <Grid item>
-          <Typography variant="h4" component="h2">
+          <Typography variant="h4" component="h2" marginTop={10}>
             {initialData[count].category}
           </Typography>
         </Grid>
@@ -77,8 +76,8 @@ const Quiz = () => {
             </Paper>
           </Box>
         </Grid>
-        <Grid item>
-          <Stack direction="row">
+        <Grid item marginBottom={10}>
+          <Stack direction="row" spacing={3}>
             <Button
               variant="contained"
               color="success"

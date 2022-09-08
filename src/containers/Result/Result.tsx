@@ -28,7 +28,7 @@ const Result = () => {
         height="100vh"
       >
         <Grid item>
-          <Typography variant="h4" component="h2">
+          <Typography variant="h4" component="h2" marginTop={10}>
             You scored {score} / {initialData.length}
           </Typography>
         </Grid>
@@ -40,7 +40,7 @@ const Result = () => {
             </Typography>
           </Grid>
         ))}
-        <Grid item>
+        <Grid item marginBottom={10}>
           <Button variant="contained" onClick={handleClick}>
             PLAY AGAIN?
           </Button>

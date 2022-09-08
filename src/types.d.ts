@@ -5,13 +5,8 @@ export interface IQuiz {
     answer: string
 }
 
-// export interface IQuiz {
-//     id: number,
-//     question: string,
-//     result: string
-// }
-
 export type QuizState = {
+    isAuthenticated: boolean,
     loading: boolean,
     results: IQuiz[]
 }

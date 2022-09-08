@@ -1,11 +1,22 @@
+import React, { useCallback } from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import React from "react";
 import { useNavigate } from "react-router";
+import { Dispatch } from "redux";
+import { useDispatch } from "react-redux";
 import StyledComponent from "../../components/StyledComponent/StyledComponent";
+import { beginAction } from "../../redux/actions";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const dispatch: Dispatch<any> = useDispatch();
+
+  const handleClick = useCallback(() => {
+    dispatch(beginAction());
+    navigate("quiz");
+  }, [dispatch, navigate]);
+
   return (
     <StyledComponent>
       <Grid
@@ -16,7 +27,7 @@ const Home = () => {
         height="100vh"
       >
         <Grid item>
-          <Typography variant="h4" component="h2">
+          <Typography variant="h4" component="h2" marginTop={10}>
             Welcome to the Trivia Challenge!
           </Typography>
         </Grid>
@@ -30,12 +41,10 @@ const Home = () => {
             Can you score 100%?
           </Typography>
         </Grid>
-        <Grid item>
+        <Grid item marginBottom={10}>
           <Button
-            variant="outlined"
-            onClick={() => {
-              navigate("quiz");
-            }}
+            variant={"outlined"}
+            onClick={handleClick}
             endIcon={<PlayArrowIcon />}
           >
             BEGIN
